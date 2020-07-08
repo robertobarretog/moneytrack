@@ -3,6 +3,11 @@ import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
 import passport from 'passport';
+import mongoSanitize from 'express-mongo-sanitize';
+import helmet from 'helmet';
+import xss from 'xss-clean';
+import rateLimit from 'express-rate-limit';
+
 import errorHandler from './middleware/error.js';
 import connectDB from './config/db.js';
 
@@ -28,6 +33,25 @@ app.use(passport.initialize());
 // Passport Config
 import passportConfig from './config/passport.js';
 passportConfig(passport);
+
+// Sanitize data
+app.use(mongoSanitize());
+
+// Set security headers
+app.use(helmet());
+
+// Prevent XSS attacks
+app.use(xss());
+
+app.set('trust proxy', 1);
+
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 200,
+});
+
+app.use('/api/', limiter);
 
 // Mount routers
 app.use('/api/users', users);

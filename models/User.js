@@ -1,14 +1,11 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 
-const emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-
-const UserSchema = new Schema({
+const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
     unique: true,
-    match: [emailRegex, 'Please add a valid email'],
   },
   password: {
     type: String,
@@ -35,4 +32,4 @@ UserSchema.pre('save', async function (next) {
   next();
 });
 
-export const User = mongoose.model('users', UserSchema);
+export default mongoose.model('users', UserSchema);

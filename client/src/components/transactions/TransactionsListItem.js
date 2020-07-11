@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import numeral from 'numeral';
 
-const TransactionsListItem = ({ id, description, amount, date }) => (
-  <Link to={`/edit/${id}`}>
+const TransactionsListItem = ({ _id, description, amount, date }) => (
+  <Link to={`/edit/${_id}`}>
     <div>
       <h3>{description}</h3>
       <span>{moment(date).format('MMMM Do, YYYY')}</span>

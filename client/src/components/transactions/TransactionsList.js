@@ -19,7 +19,7 @@ const TransactionsList = ({ transactions, loading, setTransactions }) => {
         <span>No Transactions</span>
       ) : (
         transactions.map(transaction => (
-          <TransactionsListItem key={transaction.id} {...transaction} />
+          <TransactionsListItem key={transaction._id} {...transaction} />
         ))
       )}
     </div>

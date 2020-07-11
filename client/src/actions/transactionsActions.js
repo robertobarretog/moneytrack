@@ -12,12 +12,13 @@ import {
 } from './types';
 
 // ADD_TRANSACTION
-export const addTransaction = transactionData => async dispatch => {
+export const addTransaction = (transactionData, history) => async dispatch => {
   dispatch(transactionsLoading());
   dispatch(clearErrors());
   try {
     const res = await axios.post('/api/transactions', transactionData);
     dispatch({ type: ADD_TRANSACTION, transaction: res.data });
+    history.push('/dashboard');
   } catch (err) {
     dispatch(getErrors(err.response.data));
   } finally {
@@ -39,12 +40,13 @@ export const removeTransaction = id => async dispatch => {
 };
 
 // EDIT_TRANSACTION
-export const editTransaction = (id, updates) => async dispatch => {
+export const editTransaction = (id, updates, history) => async dispatch => {
   dispatch(transactionsLoading());
   dispatch(clearErrors());
   try {
     await axios.put(`/api/transactions/${id}`, updates);
     dispatch({ type: EDIT_TRANSACTION, updates });
+    history.push('/dashboard');
   } catch (err) {
     dispatch(getErrors(err.response.data));
   } finally {

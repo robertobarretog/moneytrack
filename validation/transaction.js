@@ -6,7 +6,7 @@ const validTypes = ['income', 'expense'];
 const validateTransactionInput = data => {
   let errors = {};
 
-  data.amount = !isEmpty(data.amount) ? data.amount : '';
+  data.amount = !isEmpty(data.amount) ? String(data.amount) : '';
   data.type = !isEmpty(data.type) ? data.type : '';
 
   if (!data.amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
@@ -26,7 +26,7 @@ const validateTransactionInput = data => {
   }
 
   if (!isEmpty(data.date)) {
-    if (!data.date.match(/^\d+$/)) {
+    if (!String(data.date).match(/^\d+$/)) {
       errors.date = 'Invalid date';
     }
   }

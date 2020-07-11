@@ -31,7 +31,7 @@ const Input = ({
       type={type}
       value={value}
     />
-    {info && <small className="text-grey-500">{info}</small>}
+    {info && <small className="text-blue-600">{info}</small>}
     {error && <p className="text-red-600 text-sm italic">{error}</p>}
   </div>
 );

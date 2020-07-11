@@ -18,6 +18,8 @@ import Landing from './components/layout/Landing';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import TransactionsDashboard from './components/transactions/TransactionsDashboard';
+import AddTransaction from './components/transactions/AddTransaction';
+import EditTransaction from './components/transactions/EditTransaction';
 import NotFound from './components/not-found/NotFound';
 
 // Check for token
@@ -49,6 +51,8 @@ const App = () => {
             <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={TransactionsDashboard} />
+            <PrivateRoute path="/create" component={AddTransaction} />
+            <PrivateRoute path="/edit/:id" component={EditTransaction} />
             <Route component={NotFound} />
           </Switch>
         </div>

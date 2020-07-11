@@ -104,7 +104,8 @@ export const updateTransaction = asyncHandler(async (req, res, next) => {
 
   const transactionFields = {};
 
-  if (req.body.amount) transactionFields.amount = req.body.amount;
+  if (req.body.amount)
+    transactionFields.amount = parseFloat(req.body.amount, 10) * 100;
   if (req.body.date) transactionFields.date = req.body.date;
   if (req.body.description)
     transactionFields.description = req.body.description;

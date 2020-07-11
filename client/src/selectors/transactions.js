@@ -25,6 +25,9 @@ export default (transactions, { text, sortBy, startDate, endDate }) => {
       if (sortBy === 'amount') {
         return a.amount < b.amount ? 1 : -1;
       }
+      if (sortBy === 'type') {
+        return a.type < b.type ? 1 : -1;
+      }
       return a.description < b.description ? 1 : -1;
     });
 };

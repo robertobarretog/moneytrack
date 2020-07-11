@@ -4,6 +4,7 @@ import {
   SET_TEXT_FILTER,
   SORT_BY_DATE,
   SORT_BY_AMOUNT,
+  SORT_BY_TYPE,
   SET_START_DATE,
   SET_END_DATE,
 } from '../actions/types';
@@ -31,6 +32,11 @@ export default (state = filtersInitialState, action) => {
       return {
         ...state,
         sortBy: 'amount',
+      };
+    case SORT_BY_TYPE:
+      return {
+        ...state,
+        sortBy: 'type',
       };
     case SET_START_DATE:
       return {

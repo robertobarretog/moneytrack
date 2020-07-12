@@ -44,10 +44,10 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <Navbar />
         <div className="App">
           <Switch>
             <PublicRoute exact path="/" component={Landing} />
+            <Navbar />
             <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={TransactionsDashboard} />

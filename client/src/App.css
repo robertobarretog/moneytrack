@@ -9,3 +9,22 @@
     display: none;
   }
 }
+
+.landing-showcase {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: url('./img/showcasebg.jpg') no-repeat center center/cover;
+}
+
+.landing-showcase::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: inset 120px 100px 250px #000000, inset -120px -100px 250px #000000;
+}

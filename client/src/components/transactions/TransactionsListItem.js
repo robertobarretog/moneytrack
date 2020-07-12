@@ -22,7 +22,7 @@ const TransactionsListItem = ({
 
   return (
     <tr className="cursor-pointer" onClick={onTransactionItemClick}>
-      <td className="border px-8 py-4">{description}</td>
+      <td className="border px-8 py-4 break-all">{description}</td>
       <td className="border px-8 py-4 hide-on-xs">
         {moment(date).format('MMMM Do, YYYY')}
       </td>

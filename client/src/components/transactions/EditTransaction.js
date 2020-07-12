@@ -50,13 +50,13 @@ const EditTransaction = ({
         <div className="flex justify-center items-center mt-4">
           <button
             onClick={cancelDelete}
-            className="bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg mr-3"
+            className="transition duration-500 ease-in-out bg-gray-700 hover:bg-gray-600 text-white p-2 rounded-lg mr-3"
           >
             Cancel
           </button>
           <button
             onClick={onRemove}
-            className="bg-red-600 hover:bg-red-500 text-white p-2 rounded-lg"
+            className="transition duration-500 ease-in-out bg-red-600 hover:bg-red-500 text-white p-2 rounded-lg"
           >
             Delete
           </button>
@@ -75,7 +75,12 @@ const EditTransaction = ({
       </div>
       <div className="container mx-auto p-3">
         <TransactionForm onSubmit={onSubmit} transaction={transaction} />
-        <button className="button" onClick={onDeleteClick}>
+      </div>
+      <div className="text-center mt-4 mb-2">
+        <button
+          className="transition duration-500 ease-in-out bg-red-600 hover:bg-red-500 text-white p-2 rounded-lg"
+          onClick={onDeleteClick}
+        >
           Delete Transaction
         </button>
       </div>

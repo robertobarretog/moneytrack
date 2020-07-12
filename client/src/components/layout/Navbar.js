@@ -22,7 +22,7 @@ const Navbar = ({ isAuthenticated, logoutUser }) => {
         to="/dashboard"
         className="block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
       >
-        Transactions
+        Dashboard
       </Link>
       <div>
         <a

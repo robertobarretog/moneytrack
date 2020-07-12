@@ -34,7 +34,7 @@ const TransactionsFilters = props => {
       <div className="container mx-auto mt-5 flex justify-center items-center">
         <div className="mr-2 mb-2">
           <Input
-            placeholder="Search transactions"
+            placeholder="Description"
             value={props.filters.text}
             onChange={e => props.setTextFilter(e.target.value)}
           />

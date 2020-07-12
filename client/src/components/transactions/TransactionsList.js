@@ -13,14 +13,33 @@ const TransactionsList = ({ transactions, loading, setTransactions }) => {
   const output = loading ? (
     <Spinner />
   ) : (
-    <div>
-      <h1>Transactions List</h1>
+    <div className="container mx-auto mt-5 p-3 flex justify-center items-center">
       {transactions.length === 0 ? (
         <span>No Transactions</span>
       ) : (
-        transactions.map(transaction => (
-          <TransactionsListItem key={transaction._id} {...transaction} />
-        ))
+        <table className="shadow-lg bg-gray-300">
+          <thead>
+            <tr>
+              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4">
+                Description
+              </th>
+              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4 hide-on-xs">
+                Date
+              </th>
+              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4 hide-on-mobile">
+                Type
+              </th>
+              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4">
+                Amount
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {transactions.map(transaction => (
+              <TransactionsListItem key={transaction._id} {...transaction} />
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

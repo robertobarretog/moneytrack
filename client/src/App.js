@@ -45,7 +45,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Navbar />
-        <div className="App bg-gray-400 text-orange-500">
+        <div className="App">
           <Switch>
             <PublicRoute exact path="/" component={Landing} />
             <PublicRoute path="/login" component={Login} />

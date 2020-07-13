@@ -16,9 +16,10 @@ export const registerUser = (userData, history) => async dispatch => {
   dispatch(clearErrors());
   try {
     await axios.post('/api/users/register', userData);
-    history.push('/login');
+    return { success: true };
   } catch (err) {
     dispatch(getErrors(err.response.data));
+    return { success: false };
   } finally {
     dispatch(stopAuthLoading());
   }

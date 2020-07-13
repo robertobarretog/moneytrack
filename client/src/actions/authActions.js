@@ -34,6 +34,30 @@ export const loginUser = userData => async dispatch => {
   }
 };
 
+// Forgot Password
+export const forgotPassword = userData => async dispatch => {
+  dispatch(clearErrors());
+  try {
+    await axios.post('/api/auth/forgotpassword', userData);
+    return { success: true };
+  } catch (err) {
+    dispatch(getErrors(err.response.data));
+    return { success: false };
+  }
+};
+
+// Forgot Password
+export const resetPassword = (token, userData) => async dispatch => {
+  dispatch(clearErrors());
+  try {
+    await axios.put(`/api/auth/resetpassword/${token}`, userData);
+    return { success: true };
+  } catch (err) {
+    dispatch(getErrors(err.response.data));
+    return { success: false };
+  }
+};
+
 // Set logged in user
 export const setCurrentUser = decoded => ({
   type: SET_CURRENT_USER,

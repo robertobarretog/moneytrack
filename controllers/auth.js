@@ -39,7 +39,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   // Create reset url
   const resetUrl = `${req.protocol}://${req.get(
     'host'
-  )}/resetpassword/${resetToken}`;
+  )}/reset-password/${resetToken}`;
 
   const message = `You are receiving this email because you (or someone else) requested the reset of a password. Visit the following URL to proceed: \n\n ${resetUrl} \n\n This URL is valid for 30 minutes.`;
 

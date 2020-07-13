@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { registerUser } from '../../actions/authActions';
 import Input from '../common/Input';
+import SubmitBtn from '../common/SubmitBtn';
 
 const Register = ({ history, globalErrors, registerUser }) => {
   const [email, setEmail] = useState('');
@@ -60,11 +61,7 @@ const Register = ({ history, globalErrors, registerUser }) => {
             type="password"
             value={password2}
           />
-          <input
-            className="transition duration-500 ease-in-out mt-5 p-2 bg-orange-500 text-blue-600 hover:bg-orange-400 cursor-pointer rounded-lg w-32 mx-auto"
-            type="submit"
-            value="Register"
-          />
+          <SubmitBtn value="Register" />
         </form>
       </div>
     </div>

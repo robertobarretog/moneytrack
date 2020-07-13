@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { loginUser } from '../../actions/authActions';
 import Input from '../common/Input';
+import SubmitBtn from '../common/SubmitBtn';
 
 const Login = ({ globalErrors, loginUser }) => {
   const [email, setEmail] = useState('');
@@ -49,11 +51,13 @@ const Login = ({ globalErrors, loginUser }) => {
             type="password"
             value={password}
           />
-          <input
-            className="transition duration-500 ease-in-out mt-5 p-2 text-blue-600 bg-orange-500 hover:bg-orange-400 cursor-pointer rounded-lg w-32 mx-auto"
-            type="submit"
-            value="Log In"
-          />
+          <Link
+            className="transition duration-500 ease-in-out text-blue-600 hover:text-blue-500"
+            to="/forgot-password"
+          >
+            Forgot password?
+          </Link>
+          <SubmitBtn value="Log In" />
         </form>
       </div>
     </div>

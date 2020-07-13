@@ -17,6 +17,8 @@ import Landing from './components/layout/Landing';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import ForgotPassword from './components/auth/ForgotPassword';
+import ResetPassword from './components/auth/ResetPassword';
 import TransactionsDashboard from './components/transactions/TransactionsDashboard';
 import AddTransaction from './components/transactions/AddTransaction';
 import EditTransaction from './components/transactions/EditTransaction';
@@ -48,6 +50,11 @@ const App = () => {
           <Switch>
             <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/register" component={Register} />
+            <PublicRoute path="/forgot-password" component={ForgotPassword} />
+            <PublicRoute
+              path="/reset-password/:resettoken"
+              component={ResetPassword}
+            />
             <PrivateRoute path="/dashboard" component={TransactionsDashboard} />
             <PrivateRoute path="/create" component={AddTransaction} />
             <PrivateRoute path="/edit/:id" component={EditTransaction} />

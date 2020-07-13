@@ -13,6 +13,7 @@ import connectDB from './config/db.js';
 
 // Route files
 import users from './routes/api/users.js';
+import auth from './routes/api/auth.js';
 import transactions from './routes/api/transactions.js';
 
 // Load env vars
@@ -56,6 +57,7 @@ app.use('/api/', limiter);
 // Mount routers
 app.use('/api/users', users);
 app.use('/api/transactions', transactions);
+app.use('/api/auth', auth);
 
 // Error handler middleware
 app.use(errorHandler);

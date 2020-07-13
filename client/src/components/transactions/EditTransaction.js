@@ -78,7 +78,7 @@ const EditTransaction = ({
       </div>
       <div className="text-center mt-4 mb-2">
         <button
-          className="transition duration-500 ease-in-out bg-red-600 hover:bg-red-500 text-white p-2 rounded-lg"
+          className="transition duration-500 ease-in-out bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg"
           onClick={onDeleteClick}
         >
           Delete Transaction

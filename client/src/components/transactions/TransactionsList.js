@@ -17,21 +17,17 @@ const TransactionsList = ({ transactions, loading, setTransactions }) => {
       {transactions.length === 0 ? (
         <span>No Transactions</span>
       ) : (
-        <table className="shadow-lg bg-gray-300">
+        <table className="shadow-lg bg-gray-300 font-semibold text-lg">
           <thead>
             <tr>
-              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4">
-                Description
-              </th>
-              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4 hide-on-xs">
+              <th className="bg-blue-600 text-left px-8 py-4">Description</th>
+              <th className="bg-blue-600 text-left px-8 py-4 hide-on-xs">
                 Date
               </th>
-              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4 hide-on-mobile">
+              <th className="bg-blue-600 text-left px-8 py-4 hide-on-mobile">
                 Type
               </th>
-              <th className="bg-blue-600 border border-orange-500 text-left px-8 py-4">
-                Amount
-              </th>
+              <th className="bg-blue-600 text-left px-8 py-4">Amount</th>
             </tr>
           </thead>
           <tbody>

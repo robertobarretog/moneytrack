@@ -31,7 +31,7 @@ const TransactionsFilters = props => {
       <h1 className="container mx-auto text-center p-3 mt-5 text-xl">
         Filter Transactions by description, amount or date
       </h1>
-      <div className="container mx-auto mt-5 flex justify-center items-center">
+      <div className="container mx-auto mt-5 flex justify-center items-center p-3">
         <div className="mr-2 mb-2">
           <Input
             placeholder="Description"

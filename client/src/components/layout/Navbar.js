@@ -20,7 +20,7 @@ const Navbar = ({ isAuthenticated, logoutUser }) => {
     <>
       <Link
         to="/dashboard"
-        className="block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
+        className="transition duration-500 ease-in-out block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
       >
         Dashboard
       </Link>
@@ -28,7 +28,7 @@ const Navbar = ({ isAuthenticated, logoutUser }) => {
         <a
           href="#!"
           onClick={onLogoutClick}
-          className="mt-1 sm:mt-0 sm:ml-2 block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
+          className="transition duration-500 ease-in-out mt-1 sm:mt-0 sm:ml-2 block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
         >
           Logout
         </a>
@@ -40,13 +40,13 @@ const Navbar = ({ isAuthenticated, logoutUser }) => {
     <>
       <Link
         to="/login"
-        className="block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
+        className="transition duration-500 ease-in-out block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
       >
         Login
       </Link>
       <Link
         to="/register"
-        className="mt-1 sm:mt-0 sm:ml-2 block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
+        className="transition duration-500 ease-in-out mt-1 sm:mt-0 sm:ml-2 block px-2 py-1 text-orange-300 rounded hover:text-orange-500 hover:bg-blue-500"
       >
         Sign Up
       </Link>

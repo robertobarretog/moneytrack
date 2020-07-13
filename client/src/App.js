@@ -12,7 +12,7 @@ import PublicRoute from './components/common/PublicRoute';
 import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './actions/authActions';
 
-import Navbar from './components/layout/Navbar';
+import Layout from './components/layout/Layout';
 import Landing from './components/layout/Landing';
 
 import Login from './components/auth/Login';
@@ -44,18 +44,17 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <div className="App">
+        <Layout>
           <Switch>
-            <PublicRoute exact path="/" component={Landing} />
-            <Navbar />
             <PublicRoute path="/login" component={Login} />
             <PublicRoute path="/register" component={Register} />
             <PrivateRoute path="/dashboard" component={TransactionsDashboard} />
             <PrivateRoute path="/create" component={AddTransaction} />
             <PrivateRoute path="/edit/:id" component={EditTransaction} />
+            <PublicRoute exact path="/" component={Landing} />
             <Route component={NotFound} />
           </Switch>
-        </div>
+        </Layout>
       </Router>
     </Provider>
   );

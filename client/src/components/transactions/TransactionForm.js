@@ -4,11 +4,17 @@ import { connect } from 'react-redux';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css';
+import Spinner from '../common/Spinner/Spinner';
 import Input from '../common/Input';
 import Select from '../common/Select';
 import SubmitBtn from '../common/SubmitBtn';
 
-const TransactionForm = ({ transaction = null, onSubmit, globalErrors }) => {
+const TransactionForm = ({
+  transaction = null,
+  onSubmit,
+  globalErrors,
+  loading,
+}) => {
   const [description, setDescription] = useState(
     transaction ? transaction.description : ''
   );
@@ -60,7 +66,9 @@ const TransactionForm = ({ transaction = null, onSubmit, globalErrors }) => {
     });
   };
 
-  return (
+  const output = loading ? (
+    <Spinner />
+  ) : (
     <div className="max-w-xl mx-auto flex flex-col items-center p-6 bg-gray-300 mt-5 rounded-lg shadow-xl">
       <form onSubmit={onFormSubmit} className="flex flex-col mt-6 w-full">
         <small className="text-blue-600 font-bold text-md mb-3">
@@ -108,10 +116,13 @@ const TransactionForm = ({ transaction = null, onSubmit, globalErrors }) => {
       </form>
     </div>
   );
+
+  return output;
 };
 
 const mapStateToProps = state => ({
   globalErrors: state.errors,
+  loading: state.transactions.loading,
 });
 
 export default connect(mapStateToProps)(TransactionForm);

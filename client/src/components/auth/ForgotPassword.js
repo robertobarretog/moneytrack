@@ -5,8 +5,9 @@ import { forgotPassword } from '../../actions/authActions';
 import Input from '../common/Input';
 import SubmitBtn from '../common/SubmitBtn';
 import Modal from '../common/Modal/Modal';
+import Spinner from '../common/Spinner/Spinner';
 
-const ForgotPassword = ({ globalErrors, forgotPassword }) => {
+const ForgotPassword = ({ globalErrors, forgotPassword, loading }) => {
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState({});
   const [forgotPasswordState, setForgotPasswordState] = useState(false);
@@ -31,7 +32,9 @@ const ForgotPassword = ({ globalErrors, forgotPassword }) => {
 
   const closeModal = () => setForgotPasswordState(false);
 
-  return (
+  const output = loading ? (
+    <Spinner />
+  ) : (
     <>
       <Modal show={forgotPasswordState} modalClosed={closeModal}>
         <h1 className="font-semibold text-lg mb-3 text-center">Email Sent</h1>
@@ -72,10 +75,13 @@ const ForgotPassword = ({ globalErrors, forgotPassword }) => {
       </div>
     </>
   );
+
+  return output;
 };
 
 const mapStateToProps = state => ({
   globalErrors: state.errors,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { forgotPassword })(ForgotPassword);

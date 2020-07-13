@@ -5,8 +5,15 @@ import { resetPassword } from '../../actions/authActions';
 import Input from '../common/Input';
 import SubmitBtn from '../common/SubmitBtn';
 import Modal from '../common/Modal/Modal';
+import Spinner from '../common/Spinner/Spinner';
 
-const ResetPassword = ({ globalErrors, resetPassword, match, history }) => {
+const ResetPassword = ({
+  globalErrors,
+  resetPassword,
+  match,
+  history,
+  loading,
+}) => {
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
   const [errors, setErrors] = useState({});
@@ -31,7 +38,9 @@ const ResetPassword = ({ globalErrors, resetPassword, match, history }) => {
 
   const closeModal = () => history.push('/login');
 
-  return (
+  const output = loading ? (
+    <Spinner />
+  ) : (
     <>
       <Modal show={resetPasswordState} modalClosed={closeModal}>
         <h1 className="font-semibold text-lg mb-3 text-center">
@@ -87,10 +96,13 @@ const ResetPassword = ({ globalErrors, resetPassword, match, history }) => {
       </div>
     </>
   );
+
+  return output;
 };
 
 const mapStateToProps = state => ({
   globalErrors: state.errors,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { resetPassword })(ResetPassword);

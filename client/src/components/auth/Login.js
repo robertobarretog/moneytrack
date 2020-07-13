@@ -5,8 +5,9 @@ import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
 import Input from '../common/Input';
 import SubmitBtn from '../common/SubmitBtn';
+import Spinner from '../common/Spinner/Spinner';
 
-const Login = ({ globalErrors, loginUser }) => {
+const Login = ({ globalErrors, loginUser, loading }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
@@ -25,7 +26,9 @@ const Login = ({ globalErrors, loginUser }) => {
     loginUser(userData);
   };
 
-  return (
+  const output = loading ? (
+    <Spinner />
+  ) : (
     <div className="container mx-auto p-3">
       <div className="max-w-xl mx-auto flex flex-col items-center p-6 bg-gray-300 mt-10 rounded-lg shadow-xl">
         <h2 className="text-2xl text-blue-600 leading-tight">Log In</h2>
@@ -62,10 +65,13 @@ const Login = ({ globalErrors, loginUser }) => {
       </div>
     </div>
   );
+
+  return output;
 };
 
 const mapStateToProps = state => ({
   globalErrors: state.errors,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { loginUser })(Login);

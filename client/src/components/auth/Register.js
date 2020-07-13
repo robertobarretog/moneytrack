@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 import Input from '../common/Input';
 import SubmitBtn from '../common/SubmitBtn';
+import Spinner from '../common/Spinner/Spinner';
 
-const Register = ({ history, globalErrors, registerUser }) => {
+const Register = ({ history, globalErrors, registerUser, loading }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
@@ -25,7 +26,9 @@ const Register = ({ history, globalErrors, registerUser }) => {
     registerUser(newUser, history);
   };
 
-  return (
+  const output = loading ? (
+    <Spinner />
+  ) : (
     <div className="container mx-auto p-3">
       <div className="max-w-xl mx-auto flex flex-col items-center p-6 bg-gray-300 mt-10 rounded-lg shadow-xl">
         <h2 className="text-2xl text-blue-600 leading-tight">Sign Up</h2>
@@ -66,10 +69,13 @@ const Register = ({ history, globalErrors, registerUser }) => {
       </div>
     </div>
   );
+
+  return output;
 };
 
 const mapStateToProps = state => ({
   globalErrors: state.errors,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { registerUser })(Register);

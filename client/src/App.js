@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
@@ -17,12 +17,20 @@ import Landing from './components/layout/Landing';
 
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-import ForgotPassword from './components/auth/ForgotPassword';
-import ResetPassword from './components/auth/ResetPassword';
-import TransactionsDashboard from './components/transactions/TransactionsDashboard';
-import AddTransaction from './components/transactions/AddTransaction';
-import EditTransaction from './components/transactions/EditTransaction';
 import NotFound from './components/not-found/NotFound';
+
+// Lazy-loaded components
+const ForgotPassword = lazy(() => import('./components/auth/ForgotPassword'));
+const ResetPassword = lazy(() => import('./components/auth/ResetPassword'));
+const TransactionsDashboard = lazy(() =>
+  import('./components/transactions/TransactionsDashboard')
+);
+const AddTransaction = lazy(() =>
+  import('./components/transactions/AddTransaction')
+);
+const EditTransaction = lazy(() =>
+  import('./components/transactions/EditTransaction')
+);
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -47,20 +55,25 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Layout>
-          <Switch>
-            <PublicRoute path="/login" component={Login} />
-            <PublicRoute path="/register" component={Register} />
-            <PublicRoute path="/forgot-password" component={ForgotPassword} />
-            <PublicRoute
-              path="/reset-password/:resettoken"
-              component={ResetPassword}
-            />
-            <PrivateRoute path="/dashboard" component={TransactionsDashboard} />
-            <PrivateRoute path="/create" component={AddTransaction} />
-            <PrivateRoute path="/edit/:id" component={EditTransaction} />
-            <PublicRoute exact path="/" component={Landing} />
-            <Route component={NotFound} />
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch>
+              <PublicRoute path="/login" component={Login} />
+              <PublicRoute path="/register" component={Register} />
+              <PublicRoute path="/forgot-password" component={ForgotPassword} />
+              <PublicRoute
+                path="/reset-password/:resettoken"
+                component={ResetPassword}
+              />
+              <PrivateRoute
+                path="/dashboard"
+                component={TransactionsDashboard}
+              />
+              <PrivateRoute path="/create" component={AddTransaction} />
+              <PrivateRoute path="/edit/:id" component={EditTransaction} />
+              <PublicRoute exact path="/" component={Landing} />
+              <Route component={NotFound} />
+            </Switch>
+          </Suspense>
         </Layout>
       </Router>
     </Provider>

@@ -1,4 +1,5 @@
-import path from 'path';
+import path, { dirname } from 'path';
+import { fileURLToPath } from 'url';
 import express from 'express';
 import dotenv from 'dotenv';
 import colors from 'colors';
@@ -58,6 +59,20 @@ app.use('/api/', limiter);
 app.use('/api/users', users);
 app.use('/api/transactions', transactions);
 app.use('/api/auth', auth);
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const buildPath = path.join(__dirname, 'client', 'build');
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static(buildPath));
+
+  // Respond with the index.html file to every route that is hit, other than the routes defined above
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(buildPath, 'index.html'));
+  });
+}
 
 // Error handler middleware
 app.use(errorHandler);

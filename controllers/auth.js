@@ -41,7 +41,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
     'host'
   )}/reset-password/${resetToken}`;
 
-  const message = `You are receiving this email because you (or someone else) requested the reset of a password. Visit the following URL to proceed: \n\n ${resetUrl} \n\n This URL is valid for 30 minutes.`;
+  const message = `You are receiving this email because you (or someone else) requested the reset of a password.\n\nVisit the following URL to proceed:\n\n${resetUrl} \n\nThis URL is valid for 30 minutes.\n\nIf you did not request this, please ignore this email and your password will remain unchanged.`;
 
   try {
     await sendEmail({

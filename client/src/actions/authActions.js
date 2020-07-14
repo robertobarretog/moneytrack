@@ -11,7 +11,7 @@ import {
 } from './types';
 
 // Register User
-export const registerUser = (userData, history) => async dispatch => {
+export const registerUser = userData => async dispatch => {
   dispatch(authLoading());
   dispatch(clearErrors());
   try {
@@ -32,9 +32,6 @@ export const loginUser = userData => async dispatch => {
   try {
     const res = await axios.post('/api/users/login', userData);
     const { token } = res.data;
-    // Set token to localStorage
-    localStorage.setItem('jwtToken', token);
-    // Set token to auth header
     setAuthToken(token);
     // Decode token to get user data
     const decoded = jwt_decode(token);
@@ -85,9 +82,7 @@ export const setCurrentUser = decoded => ({
 
 // Log user out
 export const logoutUser = () => dispatch => {
-  // Remove token from localStorage
-  localStorage.removeItem('jwtToken');
-  // Remove auth header for future requests
+  // Remove token from header and ls for future requests
   setAuthToken(false);
   // Set current user to an empty object {} which will set isAuthenticated state to false
   dispatch(setCurrentUser({}));

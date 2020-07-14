@@ -25,7 +25,7 @@ const Register = ({ history, globalErrors, registerUser, loading }) => {
 
     const newUser = { email, password, password2 };
 
-    const response = await registerUser(newUser, history);
+    const response = await registerUser(newUser);
     if (response.success) {
       setShowModal(true);
     }

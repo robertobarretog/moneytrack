@@ -16,7 +16,7 @@ const AddTransaction = ({ history, addTransaction }) => {
   return (
     <>
       <div className="container mx-auto p-3">
-        <h1 className="font-bold text-xl text-center">Add Transaction</h1>
+        <h1 className="font-bold text-3xl text-center">Add Transaction</h1>
       </div>
       <div className="text-center">
         <Button

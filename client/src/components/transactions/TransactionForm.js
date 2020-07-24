@@ -71,7 +71,7 @@ const TransactionForm = ({
   ) : (
     <div className="max-w-xl mx-auto flex flex-col items-center p-6 bg-gray-300 mt-5 rounded-lg shadow-xl">
       <form onSubmit={onFormSubmit} className="flex flex-col mt-6 w-full">
-        <small className="text-blue-600 font-bold text-md mb-3">
+        <small className="text-blue-600 font-bold text-lg mb-3">
           * = required fields
         </small>
         <Input
@@ -98,10 +98,7 @@ const TransactionForm = ({
           onChange={e => setType(e.target.value)}
           error={errors.type}
         />
-        <label
-          className="block text-orange-500 text-sm font-bold mb-2"
-          htmlFor="date"
-        >
+        <label className="block text-orange-500 font-bold mb-2" htmlFor="date">
           Date *
         </label>
         <SingleDatePicker

@@ -9,10 +9,7 @@ const Select = ({ name, value, error, info, onChange, options, label }) => {
   ));
   return (
     <div className="mb-6">
-      <label
-        className="block text-orange-500 text-sm font-bold mb-2"
-        htmlFor={name}
-      >
+      <label className="block text-orange-500 font-bold mb-2" htmlFor={name}>
         {label}
       </label>
       <select
@@ -27,7 +24,7 @@ const Select = ({ name, value, error, info, onChange, options, label }) => {
         {selectOptions}
       </select>
       {info && <small className="text-blue-600">{info}</small>}
-      {error && <p className="text-red-600 text-sm italic">{error}</p>}
+      {error && <p className="text-red-600 italic">{error}</p>}
     </div>
   );
 };

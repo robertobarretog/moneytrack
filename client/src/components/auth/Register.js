@@ -55,7 +55,7 @@ const Register = ({ history, globalErrors, registerUser, loading }) => {
       </Modal>
       <div className="container mx-auto p-3">
         <div className="max-w-xl mx-auto flex flex-col items-center p-6 bg-gray-300 mt-10 rounded-lg shadow-xl">
-          <h2 className="text-2xl text-blue-600 leading-tight">Sign Up</h2>
+          <h2 className="text-3xl text-blue-600 leading-tight">Sign Up</h2>
           <p className="text-base text-orange-500 leading-normal text-center mt-3">
             Create your MoneyTrack account and start getting your finances under
             control

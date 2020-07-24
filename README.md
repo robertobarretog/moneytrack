@@ -11,6 +11,7 @@ It was built using the MERN stack. Some of the technologies it features:
 - React as a front-end client.
 - Node.js to run JavaScript on the server.
 - JSON Web Tokens to handle authentication.
+- Tailwind CSS for the styling.
 
 ## Demo
 
@@ -24,7 +25,7 @@ Roberto Barreto
 
 ### Version
 
-2.0.0
+1.0.0
 
 ### License
 

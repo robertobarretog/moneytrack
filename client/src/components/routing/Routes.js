@@ -8,6 +8,7 @@ import Landing from '../layout/Landing';
 import Login from '../auth/Login';
 import Register from '../auth/Register';
 import NotFound from '../not-found/NotFound';
+import Spinner from '../common/Spinner/Spinner';
 // Lazy-loaded components
 const ForgotPassword = lazy(() => import('../auth/ForgotPassword'));
 const ResetPassword = lazy(() => import('../auth/ResetPassword'));
@@ -19,7 +20,7 @@ const EditTransaction = lazy(() => import('../transactions/EditTransaction'));
 
 const Routes = () => (
   <Layout>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={Spinner}>
       <Switch>
         <PublicRoute path="/login" component={Login} />
         <PublicRoute path="/register" component={Register} />

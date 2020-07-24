@@ -40,13 +40,15 @@ const EditTransaction = ({
   return (
     <>
       <Modal show={deleting} modalClosed={cancelDelete}>
-        <h1 className="font-semibold text-lg mb-3 text-center">
+        <h1 className="font-semibold text-xl mb-3 text-center">
           Delete Transaction
         </h1>
-        <p className="text-center text-blue-600 mb-3">
+        <p className="text-center text-blue-600 mb-3 text-lg">
           Are you sure you want to delete this transaction?
         </p>
-        <p className="text-center text-blue-600">This can't be undone</p>
+        <p className="text-center text-blue-600 text-lg">
+          This can't be undone
+        </p>
         <div className="flex justify-center items-center mt-4">
           <button
             onClick={cancelDelete}
@@ -63,7 +65,7 @@ const EditTransaction = ({
         </div>
       </Modal>
       <div className="container mx-auto p-3">
-        <h1 className="font-bold text-xl text-center">Edit Transaction</h1>
+        <h1 className="font-bold text-3xl text-center">Edit Transaction</h1>
       </div>
       <div className="text-center">
         <Button

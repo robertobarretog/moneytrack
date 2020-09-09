@@ -1,3 +1,4 @@
+import paginate from 'jw-paginate';
 import asyncHandler from '../middleware/async.js';
 
 // Validation
@@ -19,7 +20,13 @@ export const getTransactions = asyncHandler(async (req, res, next) => {
     return res.status(404).json(errors);
   }
 
-  res.json(transactions);
+  const page = parseInt(req.query.page) || 1;
+  const pageSize = parseInt(req.query.pageSize) || 5;
+  const pager = paginate(transactions.length, page, pageSize);
+
+  const pageOfItems = transactions.slice(pager.startIndex, pager.endIndex + 1);
+
+  res.json({ pager, pageOfItems });
 });
 
 // @route   POST api/transactions
@@ -38,7 +45,7 @@ export const createTransaction = asyncHandler(async (req, res, next) => {
   const newTransaction = { date, description, amount, type, user: req.user.id };
 
   const transaction = await new Transaction(newTransaction).save();
-  res.json(transaction);
+  res.status(201).json(transaction);
 });
 
 // @route   GET api/transactions/:id

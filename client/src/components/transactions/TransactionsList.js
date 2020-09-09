@@ -2,10 +2,15 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import selectTransactions from '../../selectors/transactions';
 import { setTransactions } from '../../actions/transactionsActions';
-import TransactionsListItem from './TransactionsListItem';
+import TransactionsTable from './TransactionsTable';
 import Spinner from '../common/Spinner/Spinner';
 
-const TransactionsList = ({ transactions, loading, setTransactions }) => {
+const TransactionsList = ({
+  transactions,
+  pager,
+  loading,
+  setTransactions,
+}) => {
   useEffect(() => {
     setTransactions();
   }, [setTransactions]);
@@ -17,25 +22,11 @@ const TransactionsList = ({ transactions, loading, setTransactions }) => {
       {transactions.length === 0 ? (
         <span>No Transactions</span>
       ) : (
-        <table className="shadow-lg bg-gray-300 font-semibold text-lg">
-          <thead>
-            <tr>
-              <th className="bg-blue-600 text-left px-8 py-4">Description</th>
-              <th className="bg-blue-600 text-left px-8 py-4 hide-on-xs">
-                Date
-              </th>
-              <th className="bg-blue-600 text-left px-8 py-4 hide-on-mobile">
-                Type
-              </th>
-              <th className="bg-blue-600 text-left px-8 py-4">Amount</th>
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map(transaction => (
-              <TransactionsListItem key={transaction._id} {...transaction} />
-            ))}
-          </tbody>
-        </table>
+        <TransactionsTable
+          transactions={transactions}
+          pager={pager}
+          getTransactions={setTransactions}
+        />
       )}
     </div>
   );
@@ -48,6 +39,7 @@ const mapStateToProps = state => ({
     state.transactions.transactions,
     state.filters
   ),
+  pager: state.transactions.pager,
   loading: state.transactions.loading,
 });
 

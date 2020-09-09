@@ -56,11 +56,17 @@ export const editTransaction = (id, updates, history) => async dispatch => {
 };
 
 // SET_TRANSACTIONS
-export const setTransactions = () => async dispatch => {
+export const setTransactions = (page = 1, pageSize = 5) => async dispatch => {
   dispatch(transactionsLoading());
   try {
-    const res = await axios.get('/api/transactions');
-    dispatch({ type: SET_TRANSACTIONS, transactions: res.data });
+    const res = await axios.get(
+      `/api/transactions?page=${page}&pageSize=${pageSize}`
+    );
+    dispatch({
+      type: SET_TRANSACTIONS,
+      transactions: res.data.pageOfItems,
+      pager: res.data.pager,
+    });
   } catch (err) {
     dispatch(getErrors(err.response.data));
   } finally {

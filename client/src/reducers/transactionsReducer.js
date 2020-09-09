@@ -30,6 +30,7 @@ export default (state = transactionsInitialState, action) => {
       return {
         ...state,
         transactions: action.transactions,
+        pager: action.pager,
       };
     case EDIT_TRANSACTION:
       return {

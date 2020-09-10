@@ -20,7 +20,7 @@ const EditTransaction = lazy(() => import('../transactions/EditTransaction'));
 
 const Routes = () => (
   <Layout>
-    <Suspense fallback={Spinner}>
+    <Suspense fallback={<Spinner />}>
       <Switch>
         <PublicRoute path="/login" component={Login} />
         <PublicRoute path="/register" component={Register} />

@@ -27,12 +27,12 @@ export const addTransaction = (transactionData, history) => async dispatch => {
 };
 
 // REMOVE_TRANSACTION
-export const removeTransaction = (id, history) => async dispatch => {
+export const removeTransaction = (id, page, pageSize) => async dispatch => {
   dispatch(transactionsLoading());
   try {
     await axios.delete(`/api/transactions/${id}`);
     dispatch({ type: REMOVE_TRANSACTION, id });
-    history.push('/dashboard');
+    dispatch(setTransactions(page, pageSize));
   } catch (err) {
     dispatch(getErrors(err.response.data));
   } finally {

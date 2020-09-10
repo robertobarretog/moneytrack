@@ -2,6 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import numeral from 'numeral';
 import { withRouter } from 'react-router-dom';
+import { EditIcon, EyeIcon, TrashIcon } from '../common/Icons/Icons';
 
 const TransactionsListItem = ({
   _id,
@@ -10,10 +11,9 @@ const TransactionsListItem = ({
   date,
   type,
   history,
+  onDeleteClick,
 }) => {
-  const onTransactionItemClick = () => {
-    history.push(`/edit/${_id}`);
-  };
+  const onEditClick = () => history.push(`/edit/${_id}`);
 
   const amountClasses =
     type === 'income'
@@ -22,7 +22,7 @@ const TransactionsListItem = ({
 
   return (
     <>
-      <tr className="cursor-pointer" onClick={onTransactionItemClick}>
+      <tr>
         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
           <div className="flex items-center">
             <div>
@@ -43,10 +43,10 @@ const TransactionsListItem = ({
         <td className={amountClasses}>
           {numeral(amount / 100).format('$0,0.00')}
         </td>
-        <td className="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-500 text-sm leading-5">
-          <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
-            View Details
-          </button>
+        <td className="px-6 py-4 flex text-right border-b border-gray-500 leading-5">
+          <EyeIcon />
+          <EditIcon onEditClick={onEditClick} />
+          <TrashIcon onDeleteClick={() => onDeleteClick(_id)} />
         </td>
       </tr>
     </>

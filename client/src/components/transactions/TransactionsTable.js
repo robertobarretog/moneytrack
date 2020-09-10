@@ -2,7 +2,12 @@ import React from 'react';
 import TransactionsListItem from './TransactionsListItem';
 import Pagination from '../common/Pagination';
 
-const TransactionsTable = ({ transactions, pager, getTransactions }) => (
+const TransactionsTable = ({
+  transactions,
+  pager,
+  getTransactions,
+  onDeleteClick,
+}) => (
   <div className="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
     <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
       <table className="min-w-full">
@@ -25,7 +30,11 @@ const TransactionsTable = ({ transactions, pager, getTransactions }) => (
         </thead>
         <tbody className="bg-white">
           {transactions.map(transaction => (
-            <TransactionsListItem key={transaction._id} {...transaction} />
+            <TransactionsListItem
+              key={transaction._id}
+              {...transaction}
+              onDeleteClick={onDeleteClick}
+            />
           ))}
         </tbody>
       </table>

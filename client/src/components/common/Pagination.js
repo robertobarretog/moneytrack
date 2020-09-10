@@ -27,23 +27,24 @@ const Pagination = ({ pager, getResults }) => (
           </div>
         )}
         <div>
-          {pager.pages.map(page => {
-            const classes =
-              pager.currentPage === page
-                ? '-ml-px relative inline-flex cursor-not-allowed items-center px-4 py-2 border border-gray-300 bg-blue-700 text-white text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-tertiary active:text-gray-700 transition ease-in-out duration-150'
-                : '-ml-px relative inline-flex cursor-pointer items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-blue-700 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-tertiary active:text-gray-700 transition ease-in-out duration-150 hover:bg-blue-700 hover:text-white';
+          {pager.pages.length > 1 &&
+            pager.pages.map(page => {
+              const classes =
+                pager.currentPage === page
+                  ? '-ml-px relative inline-flex cursor-not-allowed items-center px-4 py-2 border border-gray-300 bg-blue-700 text-white text-sm leading-5 font-medium focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-tertiary active:text-gray-700 transition ease-in-out duration-150'
+                  : '-ml-px relative inline-flex cursor-pointer items-center px-4 py-2 border border-gray-300 bg-white text-sm leading-5 font-medium text-blue-700 focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-tertiary active:text-gray-700 transition ease-in-out duration-150 hover:bg-blue-700 hover:text-white';
 
-            return (
-              <button
-                key={page}
-                className={classes}
-                onClick={() => getResults(page)}
-                disabled={pager.currentPage === page}
-              >
-                {page}
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={page}
+                  className={classes}
+                  onClick={() => getResults(page)}
+                  disabled={pager.currentPage === page}
+                >
+                  {page}
+                </button>
+              );
+            })}
         </div>
         {pager.currentPage < pager.endPage && (
           <div>

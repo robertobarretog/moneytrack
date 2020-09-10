@@ -17,8 +17,8 @@ const TransactionsListItem = ({
 
   const amountClasses =
     type === 'income'
-      ? 'px-6 py-4 whitespace-no-wrap border-b text-green-700 border-gray-500 text-sm leading-5'
-      : 'px-6 py-4 whitespace-no-wrap border-b text-red-700 border-gray-500 text-sm leading-5';
+      ? 'px-6 py-4 whitespace-no-wrap border-b text-green-600 border-gray-500 leading-5'
+      : 'px-6 py-4 whitespace-no-wrap border-b text-red-600 border-gray-500 leading-5';
 
   return (
     <>
@@ -26,18 +26,20 @@ const TransactionsListItem = ({
         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
           <div className="flex items-center">
             <div>
-              <div className="text-sm leading-5 text-gray-800 break-all">
-                {description}
+              <div className="leading-5 text-gray-800 break-all">
+                {description.length > 15
+                  ? description.slice(0, 15) + '...'
+                  : description}
               </div>
             </div>
           </div>
         </td>
         <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-          <div className="text-sm leading-5 text-blue-900 hide-on-xs">
+          <div className="leading-5 text-blue-900 hide-on-xs">
             {moment(date).format('MMMM Do, YYYY')}
           </div>
         </td>
-        <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5 hide-on-mobile">
+        <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 leading-5 hide-on-mobile">
           {type}
         </td>
         <td className={amountClasses}>

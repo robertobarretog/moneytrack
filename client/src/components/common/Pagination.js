@@ -3,7 +3,7 @@ import React from 'react';
 const Pagination = ({ pager, getResults }) => (
   <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between mt-4 work-sans">
     <div>
-      <p className="text-sm leading-5 text-blue-700">
+      <p className="leading-5 text-blue-600">
         Showing {pager.startIndex + 1} to {pager.endIndex + 1} of{' '}
         {pager.totalItems} results
       </p>
@@ -14,7 +14,7 @@ const Pagination = ({ pager, getResults }) => (
           <div>
             <button
               className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:bg-blue-700 hover:text-white focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-              onClick={() => getResults(pager.currentPage - 1)}
+              onClick={() => getResults(pager.currentPage - 1, pager.pageSize)}
             >
               <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path
@@ -38,7 +38,7 @@ const Pagination = ({ pager, getResults }) => (
                 <button
                   key={page}
                   className={classes}
-                  onClick={() => getResults(page)}
+                  onClick={() => getResults(page, pager.pageSize)}
                   disabled={pager.currentPage === page}
                 >
                   {page}
@@ -50,7 +50,7 @@ const Pagination = ({ pager, getResults }) => (
           <div>
             <button
               className="-ml-px relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm leading-5 font-medium text-gray-500 hover:bg-blue-700 hover:text-white focus:z-10 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-500 transition ease-in-out duration-150"
-              onClick={() => getResults(pager.currentPage + 1)}
+              onClick={() => getResults(pager.currentPage + 1, pager.pageSize)}
             >
               <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path

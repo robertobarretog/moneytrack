@@ -75,11 +75,12 @@ const TransactionForm = ({
           * = required fields
         </small>
         <Input
-          placeholder="Description"
+          placeholder="Description *"
           name="description"
-          label="Description"
+          label="Description *"
           value={description}
           onChange={e => setDescription(e.target.value)}
+          error={errors.description}
         />
         <Input
           placeholder="Amount *"

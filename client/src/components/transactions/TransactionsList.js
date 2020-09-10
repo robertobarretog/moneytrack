@@ -39,11 +39,13 @@ const TransactionsList = ({
     setTransactionId(null);
   };
 
+  const setPageSize = pageSize => setTransactions(1, pageSize);
+
   const output = loading ? (
     <Spinner />
   ) : (
     <>
-      <div className="container mx-auto mt-5 p-3 flex justify-center items-center">
+      <div className="container mx-auto mt-5 p-3 flex flex-col justify-center items-center">
         {transactions.length === 0 ? (
           <span>No Transactions</span>
         ) : (
@@ -52,6 +54,7 @@ const TransactionsList = ({
             pager={pager}
             getTransactions={setTransactions}
             onDeleteClick={id => onDeleteClick(id)}
+            setPageSize={pageSize => setPageSize(pageSize)}
           />
         )}
       </div>

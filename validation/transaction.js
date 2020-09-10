@@ -17,6 +17,10 @@ const validateTransactionInput = data => {
     errors.type = 'Invalid transaction type';
   }
 
+  if (Validator.isEmpty(data.description)) {
+    errors.description = 'Description is required';
+  }
+
   if (Validator.isEmpty(data.amount)) {
     errors.amount = 'Amount is required';
   }

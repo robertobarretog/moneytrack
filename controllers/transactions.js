@@ -12,11 +12,26 @@ import Transaction from '../models/Transaction.js';
 // @access  Private
 export const getTransactions = asyncHandler(async (req, res, next) => {
   const errors = {};
+  const sort = {};
 
-  const transactions = await Transaction.find({ user: req.user.id });
+  const {
+    startDate = new Date(0),
+    endDate = new Date(),
+    sortBy = 'date',
+  } = req.query;
+
+  sort[sortBy] = -1;
+
+  const transactions = await Transaction.find({
+    user: req.user.id,
+    date: {
+      $gte: startDate,
+      $lte: endDate,
+    },
+  }).sort(sort);
 
   if (!transactions || transactions.length === 0) {
-    errors.notransactions = 'There are no transactions for this user';
+    errors.notransactions = 'No transactions found';
     return res.status(404).json(errors);
   }
 

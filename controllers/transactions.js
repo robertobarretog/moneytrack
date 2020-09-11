@@ -18,6 +18,7 @@ export const getTransactions = asyncHandler(async (req, res, next) => {
     startDate = new Date(0),
     endDate = new Date(),
     sortBy = 'date',
+    description = '',
   } = req.query;
 
   sort[sortBy] = -1;
@@ -28,6 +29,7 @@ export const getTransactions = asyncHandler(async (req, res, next) => {
       $gte: startDate,
       $lte: endDate,
     },
+    description: new RegExp(description, 'i'),
   }).sort(sort);
 
   if (!transactions || transactions.length === 0) {

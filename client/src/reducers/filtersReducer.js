@@ -41,12 +41,12 @@ export default (state = filtersInitialState, action) => {
     case SET_START_DATE:
       return {
         ...state,
-        startDate: action.startDate,
+        startDate: moment(action.startDate).startOf('day'),
       };
     case SET_END_DATE:
       return {
         ...state,
-        endDate: action.endDate,
+        endDate: moment(action.endDate).endOf('day'),
       };
     default:
       return state;

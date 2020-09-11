@@ -8,7 +8,7 @@ const Select = ({ name, value, error, info, onChange, options, label }) => {
     </option>
   ));
   return (
-    <div className="mb-6">
+    <div>
       <label className="block text-orange-500 font-bold mb-2" htmlFor={name}>
         {label}
       </label>

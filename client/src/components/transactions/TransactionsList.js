@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import selectTransactions from '../../selectors/transactions';
 import {
   setTransactions,
   removeTransaction,
@@ -18,10 +17,6 @@ const TransactionsList = ({
 }) => {
   const [deleting, setDeleting] = useState(false);
   const [transactionId, setTransactionId] = useState(null);
-
-  useEffect(() => {
-    setTransactions();
-  }, [setTransactions]);
 
   const onDeleteClick = id => {
     setTransactionId(id);
@@ -90,10 +85,7 @@ const TransactionsList = ({
 };
 
 const mapStateToProps = state => ({
-  transactions: selectTransactions(
-    state.transactions.transactions,
-    state.filters
-  ),
+  transactions: state.transactions.transactions,
   pager: state.transactions.pager,
   loading: state.transactions.loading,
 });

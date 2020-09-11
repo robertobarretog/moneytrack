@@ -3,13 +3,16 @@ import {
   REMOVE_TRANSACTION,
   EDIT_TRANSACTION,
   SET_TRANSACTIONS,
+  SET_TRANSACTION,
   TRANSACTIONS_LOADING,
   STOP_LOADING,
 } from '../actions/types';
 
 const transactionsInitialState = {
   transactions: [],
+  transaction: {},
   loading: false,
+  pager: {},
 };
 
 export default (state = transactionsInitialState, action) => {
@@ -25,6 +28,11 @@ export default (state = transactionsInitialState, action) => {
         transactions: state.transactions.filter(
           transaction => transaction.id !== action.id
         ),
+      };
+    case SET_TRANSACTION:
+      return {
+        ...state,
+        transaction: action.transaction,
       };
     case SET_TRANSACTIONS:
       return {

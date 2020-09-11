@@ -5,6 +5,7 @@ import {
   REMOVE_TRANSACTION,
   EDIT_TRANSACTION,
   SET_TRANSACTIONS,
+  SET_TRANSACTION,
   TRANSACTIONS_LOADING,
   STOP_LOADING,
   CLEAR_ERRORS,
@@ -56,16 +57,36 @@ export const editTransaction = (id, updates, history) => async dispatch => {
 };
 
 // SET_TRANSACTIONS
-export const setTransactions = (page = 1, pageSize = 5) => async dispatch => {
+export const setTransactions = (page = 1, pageSize = 5) => async (
+  dispatch,
+  getState
+) => {
   dispatch(transactionsLoading());
   try {
+    const { sortBy, startDate, endDate, text } = getState().filters;
     const res = await axios.get(
-      `/api/transactions?page=${page}&pageSize=${pageSize}`
+      `/api/transactions?page=${page}&pageSize=${pageSize}&startDate=${startDate._d}&endDate=${endDate._d}&sortBy=${sortBy}&description=${text}`
     );
     dispatch({
       type: SET_TRANSACTIONS,
       transactions: res.data.pageOfItems,
       pager: res.data.pager,
+    });
+  } catch (err) {
+    dispatch(getErrors(err.response.data));
+  } finally {
+    dispatch(stopLoading());
+  }
+};
+
+// SET_TRANSACTION
+export const setTransaction = id => async dispatch => {
+  dispatch(transactionsLoading());
+  try {
+    const res = await axios.get(`/api/transactions/${id}`);
+    dispatch({
+      type: SET_TRANSACTION,
+      transaction: res.data,
     });
   } catch (err) {
     dispatch(getErrors(err.response.data));

@@ -1,14 +1,14 @@
 import React from 'react';
 
 const Pagination = ({ pager, getResults }) => (
-  <div className="sm:flex-1 sm:flex sm:items-center sm:justify-between mt-4 work-sans">
+  <div className="flex flex-col justify-center items-center sm:flex-row sm:items-center sm:justify-between mt-4 work-sans">
     <div>
       <p className="leading-5 text-blue-600">
         Showing {pager.startIndex + 1} to {pager.endIndex + 1} of{' '}
         {pager.totalItems} results
       </p>
     </div>
-    <div>
+    <div className="mt-4 sm:mt-0">
       <nav className="relative z-0 inline-flex shadow-sm">
         {pager.currentPage > pager.startPage && (
           <div>

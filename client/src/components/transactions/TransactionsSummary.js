@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
-import selectTransactions from '../../selectors/transactions';
 import selectTransactionsTotal from '../../selectors/transactions-total';
 
 const TransactionsSummary = ({ transactionsCount, transactionsTotal }) => {
@@ -29,14 +28,11 @@ const TransactionsSummary = ({ transactionsCount, transactionsTotal }) => {
 };
 
 const mapStateToProps = state => {
-  const visibleTransactions = selectTransactions(
-    state.transactions.transactions,
-    state.filters
-  );
+  const transactions = state.transactions.transactions;
 
   return {
-    transactionsCount: visibleTransactions.length,
-    transactionsTotal: selectTransactionsTotal(visibleTransactions),
+    transactionsCount: transactions.length,
+    transactionsTotal: selectTransactionsTotal(transactions),
   };
 };
 

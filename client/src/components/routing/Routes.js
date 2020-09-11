@@ -17,6 +17,7 @@ const TransactionsDashboard = lazy(() =>
 );
 const AddTransaction = lazy(() => import('../transactions/AddTransaction'));
 const EditTransaction = lazy(() => import('../transactions/EditTransaction'));
+const ViewTransaction = lazy(() => import('../transactions/ViewTransaction'));
 
 const Routes = () => (
   <Layout>
@@ -32,6 +33,7 @@ const Routes = () => (
         <PrivateRoute path="/dashboard" component={TransactionsDashboard} />
         <PrivateRoute path="/create" component={AddTransaction} />
         <PrivateRoute path="/edit/:id" component={EditTransaction} />
+        <PrivateRoute path="/transaction/:id" component={ViewTransaction} />
         <PublicRoute exact path="/" component={Landing} />
         <Route component={NotFound} />
       </Switch>

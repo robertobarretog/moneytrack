@@ -26,7 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "jw-paginate": "^1.0.4",
     "mongoose": "^5.9.22",
-    "nodemailer": "^6.4.10",
+    "nodemailer": "^6.4.16",
     "nodemailer-smtp-transport": "^2.7.4",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
